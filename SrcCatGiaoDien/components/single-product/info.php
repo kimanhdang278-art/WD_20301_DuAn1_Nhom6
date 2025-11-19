@@ -37,11 +37,13 @@
     <div class="col-9">
       <div class="row">
         <div
-         
+          v-for="item in products"
+          :key="item.id"
           class="col-lg-4 col-md-6 mt-3"
         >
           <div class="card">
-            <img src=""
+            <img
+              :src="item.image"
               class="card-img-top"
               alt="..."
               style="height: 250px"
@@ -51,7 +53,7 @@
               <p class="card-price">
                 80.000vnd
               </p>
-              <a href="" class="btn btn-brown">Mua ngay</a>
+              <a href="#" class="btn btn-brown">Mua ngay</a>
             </div>
           </div>
         </div>
