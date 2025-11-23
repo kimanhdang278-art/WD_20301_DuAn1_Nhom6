@@ -11,7 +11,7 @@ $array = [
     "components/home/bestsaler.php",
     "components/home/fact.php",
     "components/home/tastimonial.php",
-    "components/layouts/footer.php"
+    "components/layouts/footer.php",
 ];
 
 foreach ($array as $component) {
