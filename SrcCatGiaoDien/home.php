@@ -1,10 +1,17 @@
 <?php
 $array = [
-    "components\home\slider.php",
-    "components\home\product-feature.php",
-    "components\home\product-by-category.php",
-    "components\home\list-post.php",
-    "components\home\contact-form.php"
+    "components/layouts/header.php",
+    "components/home/modal.php",
+    "components/home/hero.php",
+    "components/home/featurs.php",
+    "components/home/fruits.php",
+    "components/home/featursS.php",
+    "components/home/vesitable.php",
+    "components/home/banner.php",
+    "components/home/bestsaler.php",
+    "components/home/fact.php",
+    "components/home/tastimonial.php",
+    "components/layouts/footer.php",
 ];
 
 foreach ($array as $component) {
