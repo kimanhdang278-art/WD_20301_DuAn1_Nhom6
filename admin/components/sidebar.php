@@ -128,7 +128,7 @@
                 </li>
                 <li class="nav-small-cap">
                     <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-                    <span class="hide-menu">Apps</span>
+                    <span class="hide-menu">Ứng Dụng</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)"
@@ -159,7 +159,7 @@
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
-                                    <span class="hide-menu">Details</span>
+                                    <span class="hide-menu">Thêm Mới Sản Phẩm</span>
                                 </div>
 
                             </a>
@@ -170,7 +170,7 @@
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
-                                    <span class="hide-menu">List</span>
+                                    <span class="hide-menu">Danh Mục Sản Phẩm</span>
                                 </div>
 
                             </a>
@@ -181,9 +181,8 @@
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
-                                    <span class="hide-menu">Checkout</span>
+                                    <span class="hide-menu">Quản Lý Thuộc Tính</span>
                                 </div>
-
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -192,24 +191,106 @@
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
-                                    <span class="hide-menu">Add Product</span>
+                                    <span class="hide-menu">Đánh Giá Sản Phẩm</span>
                                 </div>
-
                             </a>
                         </li>
+                    </ul>
+                <li class="sidebar-item">
+                    <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="d-flex">
+                                <i class="ti ti-basket"></i>
+                            </span>
+                            <span class="hide-menu">Khách Hàng </span>
+                        </div>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a class="sidebar-link justify-content-between" href="#">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
-                                    <span class="hide-menu">Edit Product</span>
+                                    <span class="hide-menu">Danh Sách Khách Hàng</span>
+                                </div>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="d-flex">
+                                <i class="ti ti-basket"></i>
+                            </span>
+                            <span class="hide-menu">Đơn Hàng </span>
+                        </div>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link justify-content-between" href="#">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="round-16 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-circle"></i>
+                                    </div>
+                                    <span class="hide-menu">Danh Sách Khách Hàng</span>
+                                </div>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="d-flex">
+                                <i class="ti ti-basket"></i>
+                            </span>
+                            <span class="hide-menu">Bài Viết </span>
+                        </div>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link justify-content-between" href="#">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="round-16 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-circle"></i>
+                                    </div>
+                                    <span class="hide-menu">Danh Sách Khách Hàng</span>
                                 </div>
                             </a>
                         </li>
                     </ul>
                 </li>
-            </ul>
+                <li class="sidebar-item">
+                    <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="d-flex">
+                                <i class="ti ti-basket"></i>
+                            </span>
+                            <span class="hide-menu">Khuyến Mãi </span>
+                        </div>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link justify-content-between" href="#">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="round-16 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-circle"></i>
+                                    </div>
+                                    <span class="hide-menu">Danh Sách Khách Hàng</span>
+                                </div>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
         </nav>
         <!-- End Sidebar navigation -->
     </div>

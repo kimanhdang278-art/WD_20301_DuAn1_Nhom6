@@ -12,7 +12,7 @@ include "components/sidebar.php";
     <div class="body-wrapper-inner">
         <div class="container-fluid">
                 <?php
-                include "components/dashboard.php";
+                include "dashboard.php";              
                 ?>
             <!-- noi dung cua toi -->
 
