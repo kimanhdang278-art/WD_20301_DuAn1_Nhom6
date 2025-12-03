@@ -1,11 +1,40 @@
 <?php
-require_once 'Models/Product.php';
 
-$productModel = new Product($connection);
+$page = isset($_GET['page']) ? $_GET['page'] : '';
 
-$productList = $productModel->getAllProducts(1, 10);
-$product = $productModel->getOneProduct(1);
-var_dump($productList);
+if ($page === 'admin') {
+    $module = isset($_GET['module']) ? $_GET['module'] : '';
 
-$product = $productModel->getOneProduct(2);
-var_dump($productList);
+    switch ($module) {
+        case 'products':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/ProductController.php";
+            $productController = new ProductController($connection);
+            switch ($action) {
+                case 'index':
+                    $productController->index();
+                    break;
+                case 'create':
+                    $productController->create();
+                    break;
+                case 'store':
+                    $productController->store();
+                    break;
+                case 'edit':
+                    $productController->edit();
+                    break;
+                case 'update':
+                    $productController->update();
+                    break;
+                case 'delete':
+                    $productController->delete();
+                    break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.php";
+                    $dashboardController = new DashboardController();
+                  
+            }
+            break;
+    }
+} else {
+}
