@@ -1,8 +1,9 @@
 <?php
 
-$page = isset($_GET['page']) ? $_GET['page'] : '';
+$role = isset($_GET['role']) ? $_GET['role'] : '';
 
-if ($page === 'admin') {
+
+if ($role === 'admin') {
     $module = isset($_GET['module']) ? $_GET['module'] : '';
 
     switch ($module) {

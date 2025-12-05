@@ -15,8 +15,21 @@ class Product
      * @return int $active  trạng thái sản phẩm (1: active, 0: inactive)
      * @return string $sortData sắp xếp dữ liệu ngày tạo (asc: tăng dần, desc: giảm dần)
      */
+
+    public function countProduct()
+    {
+        $query = "SELECT COUNT(*) as total FROM `products`";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['total'];
+    }
+
     public function getAllProducts($page = 1, $limit = 10, $keyword = '', $active = null)
     {
+        $result = [];
+
         $offset = ($page - 1) * $limit;
         $search = '';
 
@@ -36,7 +49,11 @@ class Product
         $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $result['total'] = $this->countProduct();
+        $result['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     /**
      * Hàm lấy chi tiết một sản phẩm theo ID
@@ -58,8 +75,5 @@ class Product
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function creatProduct($data){
-        
-     
-    }
+    public function creatProduct($data) {}
 }

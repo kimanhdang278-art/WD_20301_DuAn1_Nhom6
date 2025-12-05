@@ -41,28 +41,28 @@
             </thead>
             <tbody>
                 <?php
-                foreach ($productList as $product):
-                 
+                foreach ($productList['data'] as $product):
+
                 ?>
-                <tr>
-                    <th scope="row"><?= $product['id']?></th>
-                    <td><?= $product['name'] ?></td>
-                    <td><?= $product['price'] ?></td>
-                    <td><?= $product['stock'] ?></td>
-                    <td><?= $product['description'] ?></td>
-                    <td><?= $product['image'] ?></td>
-                    <td><?= $product['organic_certified'] ?></td>
-                    <td><?= $product['is_active'] ?></td>
-                 
-                    <td>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
-                    </td>
-                    <td style="white-space:nowrap">
-                        <a href="?edit.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>
-                        <a href="?delete.php?id=<?= $product['id']?>" class="btn btn-sm btn-danger">Xóa</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row"><?= $product['id'] ?></th>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= number_format($product['price']) ?>VND</td>
+                        <td><?= $product['stock'] ?></td>
+                        <td><?= $product['description'] ?></td>
+                        <td><?= $product['image'] ?></td>
+                        <td><?= $product['organic_certified'] ?></td>
+                        <td><?= $product['is_active'] ?></td>
+
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked<?php echo $product['is_active'] ? 'check' : '' ?>>
+                        </td>
+                        <td style="white-space:nowrap">
+                            <a href="?edit.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>
+                            <a href="?delete.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
@@ -70,11 +70,18 @@
     <div class="card-footer">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                <?php
+                $role = isset($_GET['role']) ? (int)$_GET['role'] : 1;
+                $limit = 10;
+                // var_dump($productList['total']);
+                $totalPages = ceil($productList['total'] / $limit);
+                ?>
+                <li class="page-item"><a class="page-link" href="?role=admin&module=products&page=1">Trước</a></li>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item"><a class="page-link" href="?role=admin&module=products&page=<?= $i ?>"><?= $i ?></a></li>
+                <?php endfor; ?>
+
+                <li class="page-item"><a class="page-link" href="role=admin&module=products&page=<?= $totalPages ?>">Sau</a></li>
             </ul>
         </nav>
     </div>

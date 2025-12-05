@@ -42,7 +42,7 @@
                     <td>Otto</td>
                     <td>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
                     </td>
                     <td>
                         <button class="btn btn-sm btn-primary">Sửa</button>

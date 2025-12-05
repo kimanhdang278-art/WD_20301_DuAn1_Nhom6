@@ -3,8 +3,8 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
-                <img src="assets/images/logos/logo.svg" alt="" />
+            <a href="/admin.html" class="text-nowrap logo-img">
+                <img src="/admin/assets/images/logos/logo.svg" alt="" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-6"></i>
@@ -18,7 +18,7 @@
                     <span class="hide-menu">Trang Chủ</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                    <a class="sidebar-link" href="/admin.html" aria-expanded="false">
                         <i class="ti ti-atom"></i>
                         <span class="hide-menu">Thống Kê Nhanh</span>
                     </a>
@@ -154,7 +154,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link justify-content-between" href="product.php">
+                            <a class="sidebar-link justify-content-between <?= isset($_GET['moudle']) && ($_GET['moudle'])  == 'products'?'active': '' ?>" href="">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
@@ -206,7 +206,7 @@
                             <span class="hide-menu">Khách Hàng </span>
                         </div>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level">
+                    <ul aria-expanded="false" class="collapse first-level <?= isset($_GET['moudle']) && ($_GET['moudle'])  == 'products'?'in': '' ?>" >
                         <li class="sidebar-item">
                             <a class="sidebar-link justify-content-between" href="#">
                                 <div class="d-flex align-items-center gap-3">
