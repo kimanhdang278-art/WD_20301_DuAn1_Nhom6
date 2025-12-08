@@ -9,8 +9,8 @@ if ($role === 'admin') {
     switch ($module) {
         case 'products':
             $action = isset($_GET['action']) ? $_GET['action'] : 'index';
-            require_once "Controllers/Admin/ProductController.php";
-            $productController = new ProductController($connection);
+            require_once "Controllers/Admin/Category.php";
+            $categoryController = new Category($connection);
             switch ($action) {
                 case 'index':
                     $productController->index();
@@ -36,6 +36,39 @@ if ($role === 'admin') {
                   
             }
             break;
+
+        case 'category':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/CategoryController.php";
+            $categoryController = new CategoryController($connection);
+            switch ($action) {
+                case 'index':
+                    $categoryController->index();
+                    break;
+                case 'create':
+                    $categoryController->create();
+                    break;
+                case 'store':
+                    $categoryController->store();
+                    break;
+                case 'edit':
+                    $categoryController->edit();
+                    break;
+                case 'update':
+                    $categoryController->update();
+                    break;
+                case 'delete':
+                    $categoryController->delete();
+                    break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.php";
+                    $dashboardController = new DashboardController();
+                  
+            }
+            break;
+        }
     }
-} else {
+
+    
+ else {
 }
