@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary mb-3">
+<a href="?role=admin&module=products&action=create" type="button" class="btn btn-primary mb-3">
     Thêm Mới
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus"
         viewBox="0 0 16 16">
@@ -6,10 +6,11 @@
         <path
             d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
     </svg>
-</button>
+</a>
+
 <div class="card">
     <div class="card-header">
-        Danh Sách Sản Phẩm
+        Danh Sách Danh Mục
     </div>
     <div class="card-body">
         <div class="row">
@@ -28,40 +29,58 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Hình Ảnh</th>
-                    <th scope="col" style="width: 60%">Tên Sản Phẩm</th>
+                    <th scope="col">Sẩn Phẩm</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col"> Mô tả</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Sản phẩm hữu cơ</th>
                     <th scope="col">Trạng Thái</th>
-                    <th scope="col">Sửa : Thêm</th>
-                    <th></th>
+                    <th scope="col"></th>
+                   
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>
-                        <img src="https://placehold.co/600x400" alt="Product Image" class="img-fluid" style="max-width: 100px ;">
-                    </td>
-                    <td>rau cũ sạch</td>
-                    <td>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
-                    </td>
-                    <td style="white-space: nowrap;">
-                        <button class="btn btn-sm btn-primary">Sửa</button>
-                        <button class="btn btn-sm btn-danger">Xóa</button>
-                    </td>
-                </tr>
+                <?php
+                foreach ($productList['data'] as $product):
+
+                ?>
+                    <tr>
+                        <th scope="row"><?= $product['id'] ?></th>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= number_format($product['price']) ?>VND</td>
+                        <td><?= $product['stock'] ?></td>
+                        <td><?= $product['description'] ?></td>
+                        <td><?= $product['image'] ?></td>
+                        <td><?= $product['organic_certified'] ?></td>
+                        <td><?= $product['is_active'] ?></td>
+                        <td>
+                            <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked<?php echo $product['is_active'] ? 'check' : '' ?>>
+                        </td>
+                        <td style="white-space:nowrap">
+                            <a href="?edit.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>
+                            <a href="?delete.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
             </tbody>
         </table>
     </div>
     <div class="card-footer">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                <?php
+                $role = isset($_GET['role']) ? (int)$_GET['role'] : 1;
+                $limit = 10;
+                // var_dump($productList['total']);
+                $totalPages = ceil($productList['total'] / $limit);
+                ?>
+                <li class="page-item"><a class="page-link" href="?role=admin&module=products&page=1">Trước</a></li>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item"><a class="page-link" href="?role=admin&module=products&page=<?= $i ?>"><?= $i ?></a></li>
+                <?php endfor; ?>
+                <li class="page-item"><a class="page-link" href="role=admin&module=products&page=<?= $totalPages ?>">Sau</a></li>
             </ul>
         </nav>
     </div>

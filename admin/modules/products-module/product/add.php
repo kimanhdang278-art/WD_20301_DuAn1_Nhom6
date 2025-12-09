@@ -1,82 +1,86 @@
-<div class="row">
-    <div class="col-lg-9">
-        <div class="card">
-            <div class="card-header">
-                Thông Tin Sản Phẩm
-            </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Tên Sản Phẩm</label>
-                    <input type="email" class="form-control" id="title" placeholder="Nhap tên sản phẩm">
-                </div>
+<?php
+include "admin/header.php";
+include "admin/components/sidebar.php";
+?>
+
+<div class="body-wrapper">
+    <?php
+    include "admin/components/header.php";
+    ?>
+    <div class="body-wrapper-inner">
+        <div class="container-fluid">
+            <form action="?role=admin&module=products&action=store"
+                method="POST" enctype="multipart/form-data"
+                class="p-4 border rounded shadow-sm bg-light">
+                <h4 class="mb-3">Thêm sản phẩm</h4>
 
                 <div class="mb-3">
-                    <label for="froala-editor" class="form-label">Mô Tả Sản Phẩm</label>
-                    <textarea class="form-control" id="editor" rows="3"></textarea>
+                    <label class="form-label">Mã danh mục</label>
+                    <input type="number" class="form-control"
+                        name="category_id" id="category_id" placeholder="Nhập mã danh mục">
                 </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                Cài Đặt Sản Phẩm
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                            <label for="" class="form-label">
-                                Giá Gốc
-                            </label>
-                            <input type="number" name="" id="" class="form-contrl">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                            <label for="" class="form-label">
-                                Giá Khuyến Mãi
-                            </label>
-                            <input type="number" name="" id="" class="form-contrl">
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group mb-3">
-                            <label for="" class="form-label">
-                                Cân Nặng (kg)
-                            </label>
-                            <input type="number" name="" id="" class="form-contrl">
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group mb-3">
-                            <label for="" class="form-label">
-                                Loại Giống
-                            </label>
-                            <input type="number" name="" id="" class="form-contrl">
-                        </div>
-                    </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tên sản phẩm</label>
+                    <input type="text" class="form-control"
+                        name="name" id="name" placeholder="Nhập tên sản phẩm">
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Giá</label>
+                    <input type="number" class="form-control"
+                        name="price" id="price" placeholder="Nhập giá">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Số lượng</label>
+                    <input type="number" id="stock" class="form-control"
+                        name="stock" placeholder="Nhập số lượng">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Mô tả</label>
+                    <textarea class="form-control"
+                        name="description" id="description" rows="3"
+                        placeholder="Nhập mô tả"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Ảnh sản phẩm</label>
+                    <input type="file" class="form-control"
+                        name="image" id="image">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Hữu cơ (organic)</label>
+                    <select class="form-select" name="organic_certified" id="organic_certified">
+                        <option value="1">Có</option>
+                        <option value="0">Không</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Trạng thái</label>
+                    <select class="form-select" name="is_active" id="is_active">
+                        <option value="1">Kích hoạt</option>
+                        <option value="0">Không kích hoạt</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Thêm</button>
+            </form>
+
+
+            <div class="py-6 px-6 text-center">
+                <p class="mb-0 fs-4">Design and Developed by <a href="#"
+                        class="pe-1 text-primary text-decoration-underline">Wrappixel.com</a> Distributed by <a
+                        href="https://themewagon.com" target="_blank">ThemeWagon</a></p>
             </div>
         </div>
-    </div>
-
-    <div class="col-lg-3">
-        <div class="form-group mb-3">
-            <form action="/target" class="dropzone" id="my-great-dropzone"></form>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="category_id" class="form-label">Danh Mục Sản Phẩm</label>
-            <select name="form-select" aria-label="Default select example">
-                <option selected>Chọn Danh Mục</option>
-                <option value="1">Danh Mục 1</option>
-                <option value="2">Danh Mục 2</option>
-                <option value="3">Danh Mục 3</option>
-            </select>
-        </div>
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" id="isFreatured" checked>
-            <label class="form-check-label" for="isFreatured">Sản Phẩm Nổi Bật</label>
-        </div>
-        <button class="btn btn-primary">Lưu Lại</button>
     </div>
 </div>
+
+
+
+
+<?php include "admin/footer.php"; ?>
