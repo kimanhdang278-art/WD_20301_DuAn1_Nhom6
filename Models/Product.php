@@ -75,5 +75,69 @@ class Product
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function creatProduct($data) {}
+    public function createProduct($data)
+    {
+        $query = "INSERT INTO `products`(
+                `category_id`, 
+                `name`, 
+                `price`, 
+                `stock`, 
+                `description`, 
+                `image`, 
+                `organic_certified`, 
+                `is_active`
+            ) 
+            VALUES (
+                :category_id,
+                :name,
+                :price,
+                :stock,
+                :description,
+                :image,
+                :organic_certified,
+                :is_active
+            )";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue(':category_id', $data['category_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
+        $stmt->bindValue(':price', $data['price'], PDO::PARAM_STR);
+        $stmt->bindValue(':stock', $data['stock'], PDO::PARAM_INT);
+        $stmt->bindValue(':description', $data['description'], PDO::PARAM_STR);
+        $stmt->bindValue(':image', $data['image'], PDO::PARAM_STR);
+        $stmt->bindValue(':organic_certified', $data['organic_certified'], PDO::PARAM_INT);
+        $stmt->bindValue(':is_active', $data['is_active'], PDO::PARAM_INT);
+    }
+    function updateProduct($data)
+    {
+        $query = "UPDATE `products` 
+              SET 
+                `category_id` = :category_id,
+                `name` = :name,
+                `price` = :price,
+                `stock` = :stock,
+                `description` = :description,
+                `image` = :image,
+                `organic_certified` = :organic_certified,
+                `is_active` = :is_active
+              WHERE `id` = :id";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue(':id', $data['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':category_id', $data['category_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
+        $stmt->bindValue(':price', $data['price'], PDO::PARAM_STR);
+        $stmt->bindValue(':stock', $data['stock'], PDO::PARAM_INT);
+        $stmt->bindValue(':description', $data['description'], PDO::PARAM_STR);
+        $stmt->bindValue(':image', $data['image'], PDO::PARAM_STR);
+        $stmt->bindValue(':organic_certified', $data['organic_certified'], PDO::PARAM_INT);
+        $stmt->bindValue(':is_active', $data['is_active'], PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    function deleteProduct($id)
+    {
+        $query = "DELETE FROM `products` WHERE  `id` = :id";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue('id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }

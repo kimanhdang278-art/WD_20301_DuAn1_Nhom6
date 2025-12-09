@@ -7,6 +7,7 @@
   <title>Trang Quản trị Admin </title>
   <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="/admin/assets/css/styles.min.css" />
+  
 </head>
 
 <body>

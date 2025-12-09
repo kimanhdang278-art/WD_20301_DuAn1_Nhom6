@@ -15,7 +15,7 @@ if ($role === 'admin') {
                 case 'index':
                     $productController->index();
                     break;
-                case 'create':
+                case 'create':              
                     $productController->create();
                     break;
                 case 'store':
@@ -33,9 +33,18 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
-                  
+                    $dashboardController->index();   
+                    break; 
             }
             break;
+
+            
+
+
+            
     }
+
+    
+    
 } else {
 }
