@@ -33,7 +33,6 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
-                  
             }
             break;
 
@@ -63,12 +62,22 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
-                  
             }
             break;
-        }
-    }
 
-    
- else {
+        case 'user':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/UserContronller.php";
+            $userController = new UserController($connection);
+            switch ($action) {
+                case 'index':
+                    $userController->index();
+                    break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.phpp";
+                    $dashboardController = new DashboardController();
+            }
+            break;
+    }
+} else {
 }
