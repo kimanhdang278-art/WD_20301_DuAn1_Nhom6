@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Danh Sách Danh Mục
+        Danh Sách Giỏ Hàng
     </div>
     <div class="card-body">
         <div class="row">
@@ -19,27 +19,29 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Mật khẩu</th>
+                    <th scope="col">Mã người dùng</th>
+                    <th scope="col">Tổng</th>
                     <th scope="col">Thời gian</th>
-
+                    <th scope="col">Tên người dùng</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Địa chỉ</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($userList['data'] as $user):
+                foreach ($orderList['data'] as $order):
 
                 ?>
                     <tr>
-                        <th scope="row"><?= $user['id'] ?></th>
-                        <td><?= $user['name'] ?></td>
-                        <td><?= $user['email'] ?>VND</td>
-                        <td><?= $user['phone'] ?></td>
-                        <td><?= $user['password'] ?></td>
-                        <td><?= $user['created_at'] ?></td>
+                        <th scope="row"><?= $order['id'] ?></th>
+                        <td><?= $order['user_id'] ?></td>
+                        <td><?= $order['total_amount'] ?></td>
+                        <td><?= $order['status'] ?></td>
+                        <td><?= $order['created_at'] ?></td>
+                        <td><?= $order['receiver_name'] ?></td>
+                        <td><?= $order['receiver_phone'] ?></td>
+                        <td><?= $order['receiver_address'] ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -52,14 +54,14 @@
                 $role = isset($_GET['role']) ? (int)$_GET['role'] : 1;
                 $limit = 10;
                 // var_dump($userList['total']);
-                $totalPages = ceil($userList['total'] / $limit);
+                $totalPages = ceil($orderList['total'] / $limit);
                 ?>
-                <li class="page-item"><a class="page-link" href="?role=admin&module=user&page=1">Trước</a></li>
+                <li class="page-item"><a class="page-link" href="?role=admin&module=order&page=1">Trước</a></li>
                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                    <li class="page-item"><a class="page-link" href="?role=admin&module=user&page=<?= $i ?>"><?= $i ?></a></li>
+                    <li class="page-item"><a class="page-link" href="?role=admin&module=order&page=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
 
-                <li class="page-item"><a class="page-link" href="role=admin&module=user&page=<?= $totalPages ?>">Sau</a></li>
+                <li class="page-item"><a class="page-link" href="role=admin&module=order&page=<?= $totalPages ?>">Sau</a></li>
             </ul>
         </nav>
     </div>

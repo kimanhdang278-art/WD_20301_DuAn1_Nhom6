@@ -14,7 +14,7 @@ class UserController
 
     public function index()
     {
-        $usertList = $this->userModel->getAllUser(1, 10);
+        $userList = $this->userModel->getAllUser(1, 10);
         require_once "admin/user.php";
     }
 

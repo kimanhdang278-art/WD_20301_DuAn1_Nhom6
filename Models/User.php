@@ -46,7 +46,9 @@ class User
         $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result['total'] = $this->countUsers();
+        $result['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     /**
      * Hàm lấy chi tiết một người dùng theo ID .Active có thể là nulll

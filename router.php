@@ -78,6 +78,37 @@ if ($role === 'admin') {
                     $dashboardController = new DashboardController();
             }
             break;
+
+         case 'order':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/OrderController.php";
+            $orderController = new OrderController($connection);
+            switch ($action) {
+                case 'index':
+                    $orderController->index();
+                    break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.phpp";
+                    $dashboardController = new DashboardController();
+            }
+            break;
     }
 } else {
+
+    $view = isset($_GET['view']) ? $_GET['view'] : '';
+
+    switch ($view) {
+        case ' single-product':
+            break;
+        case'shop':
+
+            break;
+        default;
+            require_once "Controllers/Client/HomeController.php";
+            $homeController = new HomeController($connection);
+            $homeController->index();
+            break;
+        
+    }
+    
 }
