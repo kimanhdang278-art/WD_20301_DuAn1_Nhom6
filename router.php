@@ -78,6 +78,20 @@ if ($role === 'admin') {
                     $dashboardController = new DashboardController();
             }
             break;
+
+              case 'comment':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/CommentController.php";
+            $commentController = new CommentController($connection);
+            switch ($action) {
+                case 'index':
+                    $commentController->index();
+                    break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.phpp";
+                    $dashboardController = new DashboardController();
+            }
+            break;
     }
 } else {
 }

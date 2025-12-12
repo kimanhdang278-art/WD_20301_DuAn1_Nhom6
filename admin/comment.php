@@ -13,7 +13,7 @@ include "components/sidebar.php";
         <div class="container-fluid">
 
             <?php
-             include "modules/comment-modules/index.php";
+             include "modules/comment/index.php";
             ?>
 
             <div class="py-6 px-6 text-center">
