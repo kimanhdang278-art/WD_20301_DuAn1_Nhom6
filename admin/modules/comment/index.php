@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Danh Sách Danh Mục
+        Danh Sách Bình Luận 
     </div>
     <div class="card-body">
         <div class="row">
@@ -19,24 +19,24 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Mật khẩu</th>
+                    <th scope="col">Người dùng</th>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Đánh giá</th>
+                    <th scope="col">Bình luận</th>
                     <th scope="col">Thời gian</th>
 
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usertList['data'] as $user): ?>
+                <?php foreach ($commentList['data'] as $comment): ?>
                     <tr>
-                        <th scope="row"><?= $user['id'] ?></th>
-                        <td><?= $user['name'] ?></td>
-                        <td><?= $user['email'] ?>VND</td>
-                        <td><?= $user['phone'] ?></td>
-                        <td><?= $user['password'] ?></td>
-                        <td><?= $user['created_at'] ?></td>
+                        <th scope="row"><?= $comment['id'] ?></th>
+                        <td><?= $comment['user_id'] ?></td>
+                        <td><?= $comment['product_id'] ?></td>
+                        <td><?= $comment['rating'] ?></td>
+                        <td><?= $comment['comment'] ?></td>
+                        <td><?= $comment['created_at'] ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -48,14 +48,14 @@
                 <?php
                 $role = isset($_GET['role']) ? (int)$_GET['role'] : 1;
                 $limit = 10;
-                $totalPages = ceil($usertList['total'] / $limit);
+                $totalPages = ceil($commentList['total'] / $limit);
                 ?>
-                <li class="page-item"><a class="page-link" href="?role=admin&module=user&page=1">Trước</a></li>
+                <li class="page-item"><a class="page-link" href="?role=admin&module=comment&page=1">Trước</a></li>
                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                    <li class="page-item"><a class="page-link" href="?role=admin&module=user&page=<?= $i ?>"><?= $i ?></a></li>
+                    <li class="page-item"><a class="page-link" href="?role=admin&module=comment&page=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
 
-                <li class="page-item"><a class="page-link" href="role=admin&module=user&page=<?= $totalPages ?>">Sau</a></li>
+                <li class="page-item"><a class="page-link" href="role=admin&module=comment&page=<?= $totalPages ?>">Sau</a></li>
             </ul>
         </nav>
     </div>
