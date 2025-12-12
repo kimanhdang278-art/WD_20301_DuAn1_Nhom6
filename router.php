@@ -33,8 +33,6 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
-                    $dashboardController->index();
-                    break;
             }
             break;
 
@@ -64,21 +62,22 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
-                    $dashboardController->index();
+            }
+            break;
+
+        case 'user':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/UserContronller.php";
+            $userController = new UserController($connection);
+            switch ($action) {
+                case 'index':
+                    $userController->index();
                     break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.phpp";
+                    $dashboardController = new DashboardController();
             }
             break;
     }
 } else {
-    $view = isset($_GET['view']) ? $_GET['view'] : '';
-
-    switch ($view) {
-        case 'single-product':
-            break;
-        default:
-            require_once "Controllers/Client/HomeController.php";
-            $homeController = new HomeController($connection);
-            $homeController->index();
-            break;
-    }
 }
