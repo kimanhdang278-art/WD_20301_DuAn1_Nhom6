@@ -1,5 +1,5 @@
 <?php
-class HomeController{
+class ShopController{
     private $productModel;
     private $categoryModel;
     public function __construct($connection)
@@ -10,6 +10,6 @@ class HomeController{
     public function index(){
         $productsAll = $this->productModel->getAllProducts();
         $categoryAll = $this->categoryModel->getAllCategory(1,10);
-        require_once "Views/index.php";
+        require_once "Views/shop.php";
     }
 }

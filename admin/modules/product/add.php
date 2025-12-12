@@ -15,9 +15,13 @@ include "admin/components/sidebar.php";
                 <h4 class="mb-3">Thêm sản phẩm</h4>
 
                 <div class="mb-3">
-                    <label class="form-label">Mã danh mục</label>
-                    <input type="number" class="form-control"
-                        name="category_id" id="category_id" placeholder="Nhập mã danh mục">
+                    <label class="form-label">Danh mục</label>
+                    <select name="category_id" class="form-select" id="category_id">
+                        <?php foreach($categories as $cat): ?>
+                        <option value="<?=  $cat['id'] ?>"><?=  $cat['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    
                 </div>
 
                 <div class="mb-3">
@@ -66,7 +70,6 @@ include "admin/components/sidebar.php";
                         <option value="0">Không kích hoạt</option>
                     </select>
                 </div>
-
                 <button type="submit" class="btn btn-primary">Thêm</button>
             </form>
 

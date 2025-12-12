@@ -46,7 +46,10 @@ class Category
         $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      
+        $result['total'] = $this->countCategory();
+        $result['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     /**
      * Hàm lấy chi tiết một sản phẩm theo ID
@@ -64,8 +67,33 @@ class Category
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function creatCategory($data){
-        
-     
+    public function createCategory($data)
+    {
+        $query = "INSERT INTO `categories`(
+                `name`, 
+            ) 
+            VALUES (
+                :name,
+            )";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
+    }
+    function updateCategory($data)
+    {
+        $query = "UPDATE `categories` 
+              SET 
+                `name` = :name,
+              WHERE `id` = :id";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+    function deleteCategory($id)
+    {
+        $query = "DELETE FROM `categories` WHERE  `id` = :id";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue('id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 }

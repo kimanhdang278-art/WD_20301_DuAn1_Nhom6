@@ -37,7 +37,7 @@
                     <th scope="col">Sản phẩm hữu cơ</th>
                     <th scope="col">Trạng Thái</th>
                     <th scope="col"></th>
-                   
+
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@
                         <td><?= $product['is_active'] ?></td>
                         <td>
                             <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked<?php echo $product['is_active'] ? 'check' : '' ?>>
+                                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" <?php echo $product['is_active'] ? 'checked' : '' ?>>
                         </td>
                         <td style="white-space:nowrap">
                             <a href="?edit.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>

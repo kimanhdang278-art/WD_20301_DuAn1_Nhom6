@@ -15,7 +15,7 @@ if ($role === 'admin') {
                 case 'index':
                     $productController->index();
                     break;
-                case 'create':              
+                case 'create':
                     $productController->create();
                     break;
                 case 'store':
@@ -33,56 +33,52 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
-                    $dashboardController->index();   
-                    break; 
+                    $dashboardController->index();
+                    break;
             }
             break;
 
-            // case 'category':
-            // $action = isset($_GET['action']) ? $_GET['action'] : 'index';
-            // require_once "Controllers/Admin/CategoryController.php";
-            // $categoryController = new Category($connection);
-            // switch ($action) {
-            //     case 'index':
-            //         $categoryController->index();
-            //         break;
-            //     case 'create':
-            //         $categoryController->create();
-            //         break;
-            //     case 'store':
-            //         $categoryController->store();
-            //         break;
-            //     case 'edit':
-            //         $categoryController->edit();
-            //         break;
-            //     case 'update':
-            //         $categoryController->update();
-            //         break;
-            //     case 'delete':
-            //         $categoryController->delete();
-            //         break;
-            //     default:
-            //         require_once "Controllers/Admin/DashboardController.php";
-            //         $dashboardController = new DashboardController();
-                  
-            // }
-            // break;
-            
+        case 'category':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+            require_once "Controllers/Admin/CategoryController.php";
+            $categoryController = new CategoryController($connection);
+            switch ($action) {
+                case 'index':
+                    $categoryController->index();
+                    break;
+                case 'create':
+                    $categoryController->create();
+                    break;
+                case 'store':
+                    $categoryController->store();
+                    break;
+                case 'edit':
+                    $categoryController->edit();
+                    break;
+                case 'update':
+                    $categoryController->update();
+                    break;
+                case 'delete':
+                    $categoryController->delete();
+                    break;
+                default:
+                    require_once "Controllers/Admin/DashboardController.php";
+                    $dashboardController = new DashboardController();
+                    $dashboardController->index();
+                    break;
+            }
+            break;
     }
-
-    
-    
 } else {
     $view = isset($_GET['view']) ? $_GET['view'] : '';
 
-    switch($view){
-        case ' single-product':
-        break;
-        default;
-        require_once "Controllers/Client/HomeController.php";
-        $homeController = new HomeController($connection);
-        $homeController->index();
-        break;
+    switch ($view) {
+        case 'single-product':
+            break;
+        default:
+            require_once "Controllers/Client/HomeController.php";
+            $homeController = new HomeController($connection);
+            $homeController->index();
+            break;
     }
-
 }

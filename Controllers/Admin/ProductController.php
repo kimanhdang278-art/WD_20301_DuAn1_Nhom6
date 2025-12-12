@@ -1,14 +1,15 @@
 <?php
-require_once "Models/Product.php";
 class ProductController
 {
     private $connection;
     private $productModel;
+    private $categoryModel;
 
     public function __construct($connection)
     {
         $this->connection = $connection;
         $this->productModel = new Product($this->connection);
+        $this->categoryModel = new Category($this->connection);
     }
 
     public function index()
@@ -19,6 +20,7 @@ class ProductController
 
     public function create()
     {
+        $categories = $this->categoryModel->getAllCategory(1, 100);
         require_once "admin/modules/product/add.php";
     }
     public function store()
@@ -32,19 +34,19 @@ class ProductController
             'organic_certified' => $_POST['organic_certified'],
             'is_active'         => $_POST['is_active'],
         ];
-           $image = $_FILES['image'];
-           if($image['error'] == 0){
-            $filename = time() ."_" .basename($image['name']);
-            $targetPath = "uploads/" .$filename;
+        $image = $_FILES['image'];
+        if ($image['error'] == 0) {
+            $filename = time() . "_" . basename($image['name']);
+            $targetPath = "uploads/" . $filename;
 
             move_uploaded_file($image['tmp_name'], $targetPath);
             $data['image'] = $filename;
-           }else{
+        } else {
             $data['image'] = null;
-           }
+        }
         $this->productModel->createProduct($data);
-         header("Location:?role=admin&module=products&action=index");
-         exit();
+        header("Location:?role=admin&module=products&action=index");
+        exit();
     }
     public function edit()
     {
@@ -52,7 +54,7 @@ class ProductController
         $product = $this->productModel->getOneProduct($id);
         require_once "admin/modules/product/edit.php";
         header("Location:?role=admin&module=products&action=index");
-         exit();
+        exit();
     }
     public function update()
     {
@@ -67,13 +69,12 @@ class ProductController
             'is_active'         => $_POST['is_active'],
         ];
         $this->productModel->updateProduct($data);
-     
     }
-    public function delete() {
+    public function delete()
+    {
         $id = $_GET['id'];
         $product = $this->productModel->deleteProduct($id);
         header("Location: ?role=admin&module=products&action=index");
-         exit();
-      
+        exit();
     }
 }

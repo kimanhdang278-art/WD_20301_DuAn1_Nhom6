@@ -77,7 +77,7 @@ class Product
 
     public function createProduct($data)
     {
-        $query = "INSERT INTO `products`(
+        $query = "INSERT INTO `products` (
                 `category_id`, 
                 `name`, 
                 `price`, 
@@ -107,6 +107,9 @@ class Product
         $stmt->bindValue(':image', $data['image'], PDO::PARAM_STR);
         $stmt->bindValue(':organic_certified', $data['organic_certified'], PDO::PARAM_INT);
         $stmt->bindValue(':is_active', $data['is_active'], PDO::PARAM_INT);
+
+        // var_dump($this->connection);
+        return $stmt->execute();
     }
     function updateProduct($data)
     {
