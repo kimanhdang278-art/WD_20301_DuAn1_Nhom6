@@ -51,19 +51,24 @@
                         <td><?= number_format($product['price']) ?>VND</td>
                         <td><?= $product['stock'] ?></td>
                         <td><?= $product['description'] ?></td>
-                        <td><?= $product['image'] ?></td>
+                        <td>
+                            <?php if (!empty($product['image'])): ?>
+                                <img src="/uploads/<?php echo htmlspecialchars($product['image']); ?>" alt="" style="max-width:80px">
+                            <?php endif; ?>
+                        </td>
                         <td><?= $product['organic_certified'] ?></td>
                         <td><?= $product['is_active'] ?></td>
                         <td>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" <?php echo $product['is_active'] ? 'checked' : '' ?>>
+                            </div>
                         </td>
                         <td style="white-space:nowrap">
-                            <a href="?edit.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>
-                            <a href="?delete.php?id=<?= $product['id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
+                            <a href="?role=admin&module=products&action=edit&id=<?= $product['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>
+                            <a href="?role=admin&module=products&action=delete&id=<?= $product['id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
                         </td>
                     </tr>
-                <?php endforeach ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

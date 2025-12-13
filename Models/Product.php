@@ -125,7 +125,6 @@ class Product
                 `is_active` = :is_active
               WHERE `id` = :id";
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue(':id', $data['id'], PDO::PARAM_INT);
         $stmt->bindValue(':category_id', $data['category_id'], PDO::PARAM_INT);
         $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
         $stmt->bindValue(':price', $data['price'], PDO::PARAM_STR);
@@ -134,6 +133,7 @@ class Product
         $stmt->bindValue(':image', $data['image'], PDO::PARAM_STR);
         $stmt->bindValue(':organic_certified', $data['organic_certified'], PDO::PARAM_INT);
         $stmt->bindValue(':is_active', $data['is_active'], PDO::PARAM_INT);
+        $stmt->bindValue(':id', $data['id'], PDO::PARAM_INT);
         return $stmt->execute();
     }
     function deleteProduct($id)

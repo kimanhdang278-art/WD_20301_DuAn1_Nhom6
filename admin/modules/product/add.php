@@ -52,7 +52,7 @@ include "admin/components/sidebar.php";
                 <div class="mb-3">
                     <label class="form-label">Ảnh sản phẩm</label>
                     <input type="file" class="form-control"
-                        name="image" id="image">
+                        name="image" id="image" style="width:50px" >
                 </div>
 
                 <div class="mb-3">
