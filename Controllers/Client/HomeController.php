@@ -1,15 +1,15 @@
 <?php
 class HomeController{
-    private $productModel;
+    private $productsModel;
     private $categoryModel;
     public function __construct($connection)
     {
-        $this->productModel = new Product($connection);
+        $this->productsModel = new Product($connection);
         $this->categoryModel = new Category($connection);
     }
     public function index(){
-        $productsAll = $this->productModel->getAllProducts();
-        $categoryAll = $this->categoryModel->getAllCategory(1,10);
+        $productsAll = $this->productsModel->getAllProducts(1,8,'', 'desc',null, 1);
+        $categoryAll = $this->categoryModel->getAllCategory(1,8,'desc',true);
         require_once "Views/index.php";
     }
 }

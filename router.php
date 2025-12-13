@@ -101,14 +101,26 @@ if ($role === 'admin') {
         case ' single-product':
             break;
         case'shop':
-
+            require_once "Controllers/Client/ShopController.php";
+            $shopController = new ShopController($connection);
+            $shopController->index();
+            break;
+        case'about':
+            require_once "Controllers/Client/AboutController.php";
+            $aboutController = new AboutController($connection);
+            $aboutController->index();
+            break;
+        case'contact':
+            require_once "Controllers/Client/ContactController.php";
+            $contactController = new ContactController($connection);
+            $contactController->index();
             break;
         default;
             require_once "Controllers/Client/HomeController.php";
             $homeController = new HomeController($connection);
             $homeController->index();
             break;
-        
+            
     }
     
 }

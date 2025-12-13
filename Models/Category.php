@@ -15,38 +15,46 @@ class Category
      * @return int $active  trạng thái người dùng (1: active, 0: inactive)
      * @return string $sortData sắp xếp dữ liệu ngày tạo (asc: tăng dần, desc: giảm dần)
      */
-     public function countCategory()
+    public function countCategory()
     {
         $query = "SELECT COUNT(*) as total FROM `categories`";
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $result['total'];
     }
-    public function getAllCategory($page = 1, $limit = 10, $keyword = '')
+    public function getAllCategory($page = 1, $limit = 10, $keyword = '', $groupBy = false)
     {
         $offset = ($page - 1) * $limit;
-        $search = '';
+        $searchSql = '';
+        $params = [];
 
         if (trim($keyword) !== '') {
-            $search =" WHERE `name' LIKE '%$keyword%' ";
-        }else {
-            $search = ' WHERE 1';
-        }
-        if ($keyword !== '') {
-            $search = "AND `name` LIKE '%$keyword%' ";
-        } else {
-            $search = '';
+            $searchSql = ' WHERE c.`name` LIKE :keyword';
+            $params[':keyword'] = '%' . $keyword . '%';
         }
 
-        $query = "SELECT * FROM `categories` WHERE 1  $search LIMIT :limit OFFSET :offset";
+        $query = "SELECT c.*, COUNT(p.id) AS total_products
+                  FROM `categories` c
+                  LEFT JOIN `products` p ON c.id = p.category_id" . $searchSql . "
+                  GROUP BY c.id
+                  ORDER BY c.name
+                  LIMIT :limit OFFSET :offset";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
-        $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
+        if ($stmt === false) {
+            return ['total' => 0, 'data' => []];
+        }
+
+        // bind dynamic params
+        if (isset($params[':keyword'])) {
+            $stmt->bindValue(':keyword', $params[':keyword'], PDO::PARAM_STR);
+        }
+        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
         $stmt->execute();
-      
+
+        $result = [];
         $result['total'] = $this->countCategory();
         $result['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -62,38 +70,35 @@ class Category
 
         $query = "SELECT * FROM `categories` WHERE `id` = :id ";
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue('id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function createCategory($data)
     {
-        $query = "INSERT INTO `categories`(
-                `name`, 
-            ) 
-            VALUES (
-                :name,
-            )";
+        $query = "INSERT INTO `categories` (`name`) VALUES (:name)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return $this->connection->lastInsertId();
+        }
+        return false;
     }
     function updateCategory($data)
     {
-        $query = "UPDATE `categories` 
-              SET 
-                `name` = :name,
-              WHERE `id` = :id";
+        $query = "UPDATE `categories` SET `name` = :name WHERE `id` = :id";
         $stmt = $this->connection->prepare($query);
         $stmt->bindValue(':name', $data['name'], PDO::PARAM_STR);
+        $stmt->bindValue(':id', (int)$data['id'], PDO::PARAM_INT);
         return $stmt->execute();
     }
     function deleteCategory($id)
     {
-        $query = "DELETE FROM `categories` WHERE  `id` = :id";
+        $query = "DELETE FROM `categories` WHERE `id` = :id";
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue('id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 }

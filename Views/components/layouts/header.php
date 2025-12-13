@@ -21,10 +21,10 @@
                     </button>
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
-                            <a href="index.php" class="nav-item nav-link active">Trang chủ</a>
-                            <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
-                            <a href="shop-detail.cdhtml" class="nav-item nav-link">Giới thiệu</a>
-                            <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                            <a href="?view=index" class="nav-item nav-link active">Trang chủ</a>
+                            <a href="?view=shop" class="nav-item nav-link">Sản phẩm</a>
+                            <a href="?view=about" class="nav-item nav-link">Giới thiệu</a>
+                            <a href="?view=contact" class="nav-item nav-link">Liên hệ</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
