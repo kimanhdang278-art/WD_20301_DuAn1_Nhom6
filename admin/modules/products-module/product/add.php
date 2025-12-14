@@ -1,11 +1,11 @@
 <?php
-include "admin/header.php";
-include "admin/components/sidebar.php";
+include "header.php";
+include "components/sidebar.php";
 ?>
 
 <div class="body-wrapper">
     <?php
-    include "admin/components/header.php";
+   
     ?>
     <div class="body-wrapper-inner">
         <div class="container-fluid">
@@ -83,4 +83,4 @@ include "admin/components/sidebar.php";
 
 
 
-<?php include "admin/footer.php"; ?>
+<?php include "footer.php"; ?>

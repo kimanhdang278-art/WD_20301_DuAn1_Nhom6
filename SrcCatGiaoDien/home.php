@@ -8,5 +8,5 @@ $array = [
 ];
 
 foreach ($array as $component) {
-    require_once($component);
+    
 }
