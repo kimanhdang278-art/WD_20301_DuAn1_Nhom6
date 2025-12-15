@@ -98,7 +98,10 @@ if ($role === 'admin') {
     $view = isset($_GET['view']) ? $_GET['view'] : '';
 
     switch ($view) {
-        case ' single-product':
+        case 'single-product':
+            require_once "Controllers/Client/CartController.php";
+            $cartController = new CartController($connection);
+            $cartController->index();
             break;
         case'shop':
             require_once "Controllers/Client/ShopController.php";
