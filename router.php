@@ -108,6 +108,12 @@ if ($role === 'admin') {
             $shopController = new ShopController($connection);
             $shopController->index();
             break;
+        case'productdetail':
+            require_once "Controllers/Client/Productdetail.php";
+            $detailController = new ProductDetailController($connection);
+            $id = $_GET['id'] ?? null;
+            $detailController->index($id);
+            break;
         case'about':
             require_once "Controllers/Client/AboutController.php";
             $aboutController = new AboutController($connection);
