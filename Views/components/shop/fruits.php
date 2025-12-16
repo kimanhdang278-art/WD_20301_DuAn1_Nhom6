@@ -162,7 +162,7 @@
                                                  <h4><?= htmlspecialchars($product['name']) ?></h4>
                                                  <p>Nho tươi</p>
                                                  <div class="d-flex justify-content-between flex-lg-wrap">
-                                                     <p class="text-dark fs-5 fw-bold mb-0"><?= htmlspecialchars($product['price']) ?>vnd </p>
+                                                     <p class="text-dark fs-5 fw-bold mb-0"><?=htmlspecialchars(number_format($product['price']))?>vnd </p>
                                                      <a href="?view=productdetail&id=<?= $product['id'] ?>" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>Mua ngay</a>
                                                  </div>
                                              </div>

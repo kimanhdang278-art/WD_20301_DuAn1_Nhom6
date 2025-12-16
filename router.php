@@ -79,7 +79,7 @@ if ($role === 'admin') {
             }
             break;
 
-         case 'order':
+        case 'order':
             $action = isset($_GET['action']) ? $_GET['action'] : 'index';
             require_once "Controllers/Admin/OrderController.php";
             $orderController = new OrderController($connection);
@@ -94,32 +94,51 @@ if ($role === 'admin') {
             break;
     }
 } else {
-
-    $view = isset($_GET['view']) ? $_GET['view'] : '';
-
+    $view = $_GET['view'] ?? '';
+  
     switch ($view) {
-        case 'single-product':
+        case 'cart':
+            $action = isset($_GET['action']) ? $_GET['action'] : 'index';
             require_once "Controllers/Client/CartController.php";
             $cartController = new CartController($connection);
-            $cartController->index();
-            break;
-        case'shop':
+            switch ($action) {
+                case'index':
+                $cartController->index(1);
+                 break;
+
+                case 'add':
+                $product_id = $_GET['id'] ?? 0;
+                $cartController->add($product_id);
+                 break;
+
+                case 'delete':
+                $cartController->delete($id);
+                break;
+
+                default:
+                $cartController->index();
+                break;
+            } 
+          break;
+        
+
+        case 'shop':
             require_once "Controllers/Client/ShopController.php";
             $shopController = new ShopController($connection);
             $shopController->index();
             break;
-        case'productdetail':
+        case 'productdetail':
             require_once "Controllers/Client/Productdetail.php";
             $detailController = new ProductDetailController($connection);
             $id = $_GET['id'] ?? null;
             $detailController->index($id);
             break;
-        case'about':
+        case 'about':
             require_once "Controllers/Client/AboutController.php";
             $aboutController = new AboutController($connection);
             $aboutController->index();
             break;
-        case'contact':
+        case 'contact':
             require_once "Controllers/Client/ContactController.php";
             $contactController = new ContactController($connection);
             $contactController->index();
@@ -129,7 +148,5 @@ if ($role === 'admin') {
             $homeController = new HomeController($connection);
             $homeController->index();
             break;
-            
     }
-    
 }

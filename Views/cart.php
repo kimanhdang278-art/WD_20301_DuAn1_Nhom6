@@ -2,8 +2,7 @@
 require_once "header.php";
 $array = [
     "components/layouts/header.php",
-    "components/single-product/cart.php",
-
+    "components/cart/cart.php",
     "components/layouts/footer.php",
 ];
 
