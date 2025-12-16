@@ -154,40 +154,32 @@
                                </div>
                            </div>
                        </div>
-                       <form action="#">
-                           <h4 class="mb-5 fw-bold">Bình luận</h4>
-                           <div class="row g-4">
-                               <div class="col-lg-6">
-                                   <div class="border-bottom rounded">
-                                       <input type="text" class="form-control border-0 me-4" placeholder="Tên *">
-                                   </div>
-                               </div>
-                               <div class="col-lg-6">
-                                   <div class="border-bottom rounded">
-                                       <input type="email" class="form-control border-0" placeholder="Email *">
-                                   </div>
-                               </div>
-                               <div class="col-lg-12">
-                                   <div class="border-bottom rounded my-4">
-                                       <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                                   </div>
-                               </div>
-                               <div class="col-lg-12">
-                                   <div class="d-flex justify-content-between py-3 mb-5">
-                                       <div class="d-flex align-items-center">
-                                           <p class="mb-0 me-3">Đánh giá:</p>
-                                           <div class="d-flex align-items-center" style="font-size: 12px;">
-                                               <i class="fa fa-star text-muted"></i>
-                                               <i class="fa fa-star"></i>
-                                               <i class="fa fa-star"></i>
-                                               <i class="fa fa-star"></i>
-                                               <i class="fa fa-star"></i>
-                                           </div>
-                                       </div>
-                                       <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3">Bình luận</a>
-                                   </div>
-                               </div>
+                       <form method="post" action="?view=review&action=add">
+
+                           <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+
+                           <input name="name" placeholder="Tên *" required>
+                           <input name="email" placeholder="Email *" required>
+                           <!-- Rating -->
+                           <div class="mb-3">
+                               <label class="form-label">Đánh giá *</label>
+                               <select name="rating" class="form-select" required>
+                                   <option value="">Chọn sao</option>
+                                   <option value="5">★★★★★</option>
+                                   <option value="4">★★★★☆</option>
+                                   <option value="3">★★★☆☆</option>
+                                   <option value="2">★★☆☆☆</option>
+                                   <option value="1">★☆☆☆☆</option>
+                               </select>
                            </div>
+
+                           <!-- Comment -->
+                           <div class="mb-3">
+                               <textarea name="comment" class="form-control" rows="4"
+                                   placeholder="Your Review *" required></textarea>
+                           </div>
+
+                           <button class="btn btn-primary">Gửi bình luận</button>
                        </form>
                    </div>
                </div>
@@ -217,7 +209,7 @@
                            <div class="d-flex align-items-center justify-content-start">
                                <?php
 
-                                foreach (array_splice($productsAll['data'],0,4) as $product):
+                                foreach (array_splice($productsAll['data'], 0, 4) as $product):
                                 ?>
 
                                    <div class="rounded mt-3" style="width: 100px; height: 100px;">
@@ -257,27 +249,27 @@
            <h1 class="fw-bold mb-0">Sản phẩm liên quan</h1>
            <div class="vesitable">
                <div class="owl-carousel vegetable-carousel justify-content-center">
-                <?php
-                         
-                  foreach ($productsAll['data'] as $product):
-                ?>
-                   <div class="border border-primary rounded position-relative vesitable-item">
-                       <div class="vesitable-img">
-                           <img src="uploads/<?= htmlspecialchars($product['image']) ?>" class="img-fluid w-100 rounded-top" alt="">
-                       </div>
-                       <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Rau hữu cơ</div>
-                       <div class="p-4 pb-0 rounded-bottom">
-                           <h4><?= htmlspecialchars($product['name']) ?></h4>
-                           <p><?= htmlspecialchars($product['description']) ?></p>
-                           <div class="d-flex justify-content-between flex-lg-wrap">
-                               <p class="text-dark fs-5 fw-bold"><?= htmlspecialchars($product['price']) ?>vnd</p>
-                               <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Mua ngay</a>
+                   <?php
+
+                    foreach ($productsAll['data'] as $product):
+                    ?>
+                       <div class="border border-primary rounded position-relative vesitable-item">
+                           <div class="vesitable-img">
+                               <img src="uploads/<?= htmlspecialchars($product['image']) ?>" class="img-fluid w-100 rounded-top" alt="">
+                           </div>
+                           <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Rau hữu cơ</div>
+                           <div class="p-4 pb-0 rounded-bottom">
+                               <h4><?= htmlspecialchars($product['name']) ?></h4>
+                               <p><?= htmlspecialchars($product['description']) ?></p>
+                               <div class="d-flex justify-content-between flex-lg-wrap">
+                                   <p class="text-dark fs-5 fw-bold"><?= htmlspecialchars($product['price']) ?>vnd</p>
+                                   <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Mua ngay</a>
+                               </div>
                            </div>
                        </div>
-                   </div>
                    <?php
                     endforeach;
-                   
+
                     ?>
                </div>
            </div>

@@ -95,32 +95,32 @@ if ($role === 'admin') {
     }
 } else {
     $view = $_GET['view'] ?? '';
-  
+
     switch ($view) {
         case 'cart':
             $action = isset($_GET['action']) ? $_GET['action'] : 'index';
             require_once "Controllers/Client/CartController.php";
             $cartController = new CartController($connection);
             switch ($action) {
-                case'index':
-                $cartController->index(1);
-                 break;
+                case 'index':
+                    $cartController->index(1);
+                    break;
 
                 case 'add':
-                $product_id = $_GET['id'] ?? 0;
-                $cartController->add($product_id);
-                 break;
+                    $product_id = $_GET['id'] ?? 0;
+                    $cartController->add($product_id);
+                    break;
 
                 case 'delete':
-                $cartController->delete($id);
-                break;
+                    $cartController->delete($id);
+                    break;
 
                 default:
-                $cartController->index();
-                break;
-            } 
-          break;
-        
+                    $cartController->index();
+                    break;
+            }
+            break;
+
 
         case 'shop':
             require_once "Controllers/Client/ShopController.php";
@@ -142,6 +142,11 @@ if ($role === 'admin') {
             require_once "Controllers/Client/ContactController.php";
             $contactController = new ContactController($connection);
             $contactController->index();
+            break;
+        case 'review':
+            require_once "Controllers/Client/CommentController.php";
+            $controller = new CommentController($connection);
+            $controller->add();
             break;
         default;
             require_once "Controllers/Client/HomeController.php";
