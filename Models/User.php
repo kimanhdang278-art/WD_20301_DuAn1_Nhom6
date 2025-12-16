@@ -58,7 +58,6 @@ class User
      */
     public function getOneUser($id)
     {
-
         $query = "SELECT * FROM `user` WHERE `id` = :id ";
         $stmt = $this->connection->prepare($query);
         $stmt->bindValue('id', $id, PDO::PARAM_INT);

@@ -1,21 +1,24 @@
 <?php
 
-class AuthController {
-    private $UserModel;
-    public function __construct($connection) {
-       $this->UserModel = new UserModel($connection);
+class AuthController
+{
 
+    private $userModel;
+
+    public function __construct($connection)
+    {
+        require_once "Models/User.php";
+        $this->userModel = new User($connection);
     }
-    public function login() {
+    public function login()
+    {
         if (isset($_SESSION['user'])) {
-            // Nếu đã đăng nhập, chuyển hướng đến trang chủ
-            header("Location: ?");
+            header("Location: ?view=home");
             return;
         }
 
-        require_once "Views/components/login.php";
+        require_once "Views/login.php";
     }
-
     public function handleLogin() {
         $mail = $_POST['email'];
         $password = $_POST['password'];
