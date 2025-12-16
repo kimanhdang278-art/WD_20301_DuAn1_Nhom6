@@ -18,7 +18,7 @@
                     <span class="hide-menu">Trang Chủ</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin.html" aria-expanded="false">
+                    <a class="sidebar-link" href="" aria-expanded="false">
                         <i class="ti ti-atom"></i>
                         <span class="hide-menu">Thống Kê Nhanh</span>
                     </a>
@@ -154,7 +154,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link justify-content-between <?= isset($_GET['moudle']) && ($_GET['moudle'])  == 'products'?'active': '' ?>" href="">
+                            <a class="sidebar-link justify-content-between <?= isset($_GET['moudle']) && ($_GET['moudle'])  == 'products'?'active': '' ?>" href="?role=admin&module=products&action=index">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
@@ -165,7 +165,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link justify-content-between" href="#">
+                            <a class="sidebar-link justify-content-between" href="?role=admin&module=category&action=index">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
@@ -208,7 +208,7 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level <?= isset($_GET['moudle']) && ($_GET['moudle'])  == 'products'?'in': '' ?>" >
                         <li class="sidebar-item">
-                            <a class="sidebar-link justify-content-between" href="#">
+                            <a class="sidebar-link justify-content-between" href="?role=admin&module=user&action=index">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>

@@ -33,6 +33,7 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
+                    $dashboardController->index();
             }
             break;
 
@@ -62,6 +63,7 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.php";
                     $dashboardController = new DashboardController();
+                     $dashboardController->index();
             }
             break;
 
@@ -76,6 +78,7 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.phpp";
                     $dashboardController = new DashboardController();
+                     $dashboardController->index();
             }
             break;
 
@@ -90,6 +93,7 @@ if ($role === 'admin') {
                 default:
                     require_once "Controllers/Admin/DashboardController.phpp";
                     $dashboardController = new DashboardController();
+                     $dashboardController->index();
             }
             break;
     }
@@ -143,6 +147,7 @@ if ($role === 'admin') {
             $contactController = new ContactController($connection);
             $contactController->index();
             break;
+        
         default;
             require_once "Controllers/Client/HomeController.php";
             $homeController = new HomeController($connection);
