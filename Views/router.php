@@ -79,7 +79,7 @@ if ($role === 'admin') {
             }
             break;
 
-         case 'order':
+        case 'order':
             $action = isset($_GET['action']) ? $_GET['action'] : 'index';
             require_once "Controllers/Admin/OrderController.php";
             $orderController = new OrderController($connection);
@@ -98,34 +98,57 @@ if ($role === 'admin') {
     $view = isset($_GET['view']) ? $_GET['view'] : '';
 
     switch ($view) {
-        case ' single-product':
+        case 'single':
+            require_once "Controllers/Client/ShopController.php";
+            $homeController = new ShopController($connection);
+            $homeController->show();
             break;
-            case'cart':
+        case 'single-product':
             require_once "Controllers/Client/CartController.php";
             $cartController = new CartController($connection);
             $cartController->index();
             break;
-        case'shop':
+        case 'shop':
             require_once "Controllers/Client/ShopController.php";
             $shopController = new ShopController($connection);
             $shopController->index();
             break;
-        case'about':
+        case 'productdetail':
+            require_once "Controllers/Client/Productdetail.php";
+            $detailController = new ProductDetailController($connection);
+            $id = $_GET['id'] ?? null;
+            $detailController->index($id);
+            break;
+        case 'about':
             require_once "Controllers/Client/AboutController.php";
             $aboutController = new AboutController($connection);
             $aboutController->index();
             break;
-        case'contact':
+        case 'contact':
             require_once "Controllers/Client/ContactController.php";
             $contactController = new ContactController($connection);
             $contactController->index();
+            break;
+        case 'login':
+            require_once "Controllers/Client/AuthController.php";
+            $authController = new AuthController($connection);
+            $authController->login();
+        case 'handle-login':
+            require_once "Controllers/Client/AuthController.php";
+            $authController = new AuthController($connection);
+            $authController->login();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $authController->handleLogin();
+            }else {
+                $authController->login();
+            }
             break;
         default;
             require_once "Controllers/Client/HomeController.php";
             $homeController = new HomeController($connection);
             $homeController->index();
             break;
-            
+
     }
-    
+
 }
