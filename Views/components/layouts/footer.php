@@ -28,10 +28,11 @@
          <div class="row g-5">
              <div class="col-lg-3 col-md-6">
                  <div class="footer-item">
-                     <h4 class="text-light mb-3">Why People Like us!</h4>
-                     <p class="mb-4">typesetting, remaining essentially unchanged. It was
-                         popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
-                     <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                     <h4 class="text-light mb-3">Vì sao mọi người yêu thích chúng tôi!</h4>
+                     <p class="mb-4">
+                         Nó trở nên phổ biến vào những năm 1960 cùng với các ấn phẩm như
+                         Aldus PageMaker có sử dụng Lorem Ipsum.</p>
+                     <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary"> Xem thêm</a>
                  </div>
              </div>
              <div class="col-lg-3 col-md-6">
