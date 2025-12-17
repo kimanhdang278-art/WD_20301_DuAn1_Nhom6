@@ -43,8 +43,17 @@
                         <td><?= $category['name'] ?></td>
 
                         <td style="white-space:nowrap">
-                            <a href="?edit.php?id=<?= $category['id'] ?>" class="btn btn-sm btn-primary">Sửa</a>
-                            <a href="?delete.php?id=<?= $category['id'] ?>" class="btn btn-sm btn-danger">Xóa</a>
+                            <a href="?role=admin&module=category&action=edit&id=<?= $category['id'] ?>"
+                                class="btn btn-warning btn-sm">
+                                Sửa
+                            </a>
+
+                            <a href="?role=admin&module=category&action=delete&id=<?= $category['id'] ?>"
+                                onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?')"
+                                class="btn btn-danger btn-sm">
+                                Xóa
+                            </a>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>

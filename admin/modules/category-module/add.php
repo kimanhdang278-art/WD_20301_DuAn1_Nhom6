@@ -9,9 +9,11 @@ include "admin/components/sidebar.php";
     ?>
     <div class="body-wrapper-inner">
         <div class="container-fluid">
-            <form action="?role=admin&module=products&action=store"
-                method="POST" enctype="multipart/form-data"
+            <form action="?role=admin&module=category&action=store"
+                method="POST"
                 class="p-4 border rounded shadow-sm bg-light">
+
+             
                 <h4 class="mb-3">Thêm danh mục sản phẩm</h4>
 
                 <div class="mb-3">
